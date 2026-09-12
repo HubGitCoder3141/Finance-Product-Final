@@ -1,0 +1,22 @@
+{
+  "status": "template_not_measured",
+  "baseline_id": null,
+  "date_utc": null,
+  "commit": null,
+  "fixture_version": null,
+  "environment": null,
+  "provider_mode": "placeholder",
+  "sample_count": null,
+  "teaching_measure_definition": null,
+  "teaching_evidence": null,
+  "local_latency_ms": null,
+  "model_latency_ms": null,
+  "api_requests": null,
+  "api_cost_usd": null,
+  "evaluation_api_cost_usd": null,
+  "input_tokens": null,
+  "output_tokens": null,
+  "pricing_source_and_date": null,
+  "limitations": [],
+  "evidence_export": null
+}

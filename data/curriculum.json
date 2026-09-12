@@ -1,0 +1,838 @@
+{
+  "version": 1,
+  "authorship": "Authored instructional examples; not learner research records.",
+  "modules": [
+    {
+      "id": "expected_value",
+      "title": "Expected value",
+      "summary": "Find the average hidden inside uncertain outcomes.",
+      "outcomes": [
+        "Calculate a probability-weighted average.",
+        "Explain why an average need not be a possible single result."
+      ],
+      "prerequisites": "Multiply decimals or fractions and add. A probability is between 0 and 1; mutually exclusive, exhaustive outcomes have probabilities that total 1. With 3 blue marbles among 10 equally likely marbles, P(blue) = 3/10.",
+      "plain": "Expected value is the balance point of uncertain numerical outcomes. Give more likely outcomes more weight, then add their contributions. It describes an average, not a promise about the next result.",
+      "technical": "For a finite discrete random variable X with possible values x_i and probabilities p_i, its expected value is the sum of each value multiplied by its probability. Over many independent repetitions of the same distribution, the sample average tends toward this theoretical value; a finite run need not equal it.",
+      "formula": "E[X] = \\sum_i x_i p_i",
+      "symbols": {
+        "X": "The numerical result of one uncertain trial, such as minutes waiting.",
+        "E[X]": "The theoretical probability-weighted average, in the same units as X.",
+        "i": "An index labeling each possible outcome.",
+        "x_i": "The value of outcome i.",
+        "p_i": "The probability of outcome i; all probabilities must sum to 1.",
+        "Σ": "Add the weighted contributions across all outcomes."
+      },
+      "worked": "### Worked example · The shuttle wait\nA shuttle wait is 0 minutes with probability 0.5, or 10 minutes with probability 0.5. These outcomes cover every possibility in this simplified model.\n\n1. List values: 0 and 10 minutes.\n2. Check probabilities: 0.5 + 0.5 = 1.\n3. Weight each value: 0 × 0.5 = 0; 10 × 0.5 = 5.\n4. Add: E[X] = 0 + 5 = **5 minutes**.\n\nYou never wait exactly 5 minutes in this model. Over repeated trips, the average wait tends toward 5 minutes. The next trip is still either 0 or 10 minutes.",
+      "table": [
+        {
+          "Outcome": "Immediate shuttle",
+          "Minutes": 0,
+          "Probability": 0.5,
+          "Weighted minutes": 0.0
+        },
+        {
+          "Outcome": "Later shuttle",
+          "Minutes": 10,
+          "Probability": 0.5,
+          "Weighted minutes": 5.0
+        }
+      ],
+      "guided_intro": "### Your turn · A delivery route\nA package takes 2 days with probability 0.75 and 6 days with probability 0.25. Work through the weighted average. You can continue even if a step is incorrect.",
+      "guided": [
+        {
+          "prompt": "What is the contribution from the 2-day outcome?",
+          "options": [
+            "1.5 days",
+            "2 days",
+            "0.75 days"
+          ],
+          "answer": "1.5 days",
+          "explanation": "Multiply 2 days by 0.75 to get 1.5 weighted days. A probability alone is not a time."
+        },
+        {
+          "prompt": "What is the expected delivery time?",
+          "options": [
+            "3 days",
+            "4 days",
+            "8 days"
+          ],
+          "answer": "3 days",
+          "explanation": "The other contribution is 6 × 0.25 = 1.5. Add 1.5 + 1.5 = 3 days. Averaging 2 and 6 equally would ignore their different probabilities."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "expected_value-q1",
+          "concept": "expected_value",
+          "difficulty": 1,
+          "text": "What does expected value describe?",
+          "options": [
+            "The next guaranteed result",
+            "A probability-weighted average",
+            "The most likely result"
+          ],
+          "answer": "A probability-weighted average",
+          "explanation": "It is a weighted average over possible values, not a forecast of one trial.",
+          "hint": "Think about averaging repeated trials.",
+          "feedback": {
+            "The next guaranteed result": "An average does not guarantee an individual result.",
+            "A probability-weighted average": "It is a weighted average over possible values, not a forecast of one trial.",
+            "The most likely result": "The most likely result is the mode; it need not equal the mean."
+          },
+          "assisted": false
+        },
+        {
+          "id": "expected_value-q2",
+          "concept": "expected_value",
+          "difficulty": 1,
+          "text": "X is 0 or 10, each with probability 1/2. What is E[X]?",
+          "options": [
+            "0",
+            "5",
+            "10"
+          ],
+          "answer": "5",
+          "explanation": "0 × 1/2 + 10 × 1/2 = 5.",
+          "hint": "Weight both outcomes before adding.",
+          "feedback": {
+            "0": "Include the contribution from 10.",
+            "5": "0 × 1/2 + 10 × 1/2 = 5.",
+            "10": "Include the probability weight; 10 is only one outcome."
+          },
+          "assisted": false
+        },
+        {
+          "id": "expected_value-q3",
+          "concept": "expected_value",
+          "difficulty": 2,
+          "text": "A trip takes 2 minutes with probability 0.75 and 6 minutes with probability 0.25. Its expected time is:",
+          "options": [
+            "4 minutes",
+            "8 minutes",
+            "3 minutes"
+          ],
+          "answer": "3 minutes",
+          "explanation": "2 × 0.75 + 6 × 0.25 = 1.5 + 1.5 = 3 minutes.",
+          "hint": "The probabilities are unequal.",
+          "feedback": {
+            "4 minutes": "4 treats the outcomes as equally likely.",
+            "8 minutes": "Adding times alone ignores probability.",
+            "3 minutes": "2 × 0.75 + 6 × 0.25 = 1.5 + 1.5 = 3 minutes."
+          },
+          "assisted": false
+        },
+        {
+          "id": "expected_value-q4",
+          "concept": "expected_value",
+          "difficulty": 2,
+          "text": "A complete distribution has probabilities 0.4 and 0.4. What should you do?",
+          "options": [
+            "Calculate without changes",
+            "Multiply both values by 0.5 silently",
+            "Check missing probability or incorrect inputs"
+          ],
+          "answer": "Check missing probability or incorrect inputs",
+          "explanation": "A complete distribution must total 1. These inputs total 0.8 and need correction.",
+          "hint": "Add the probabilities first.",
+          "feedback": {
+            "Calculate without changes": "There is unaccounted probability.",
+            "Multiply both values by 0.5 silently": "Changing probabilities silently changes the problem.",
+            "Check missing probability or incorrect inputs": "A complete distribution must total 1. These inputs total 0.8 and need correction."
+          },
+          "assisted": false
+        },
+        {
+          "id": "expected_value-q5",
+          "concept": "expected_value",
+          "difficulty": 3,
+          "text": "E[X] = 5, but only 0 and 10 can occur. Which is true?",
+          "options": [
+            "The model is inconsistent",
+            "The average can be 5 although no individual result is 5",
+            "Every second result must be 5"
+          ],
+          "answer": "The average can be 5 although no individual result is 5",
+          "explanation": "A weighted average can lie between outcomes. No individual result or finite average is guaranteed.",
+          "hint": "Separate individual results from averages.",
+          "feedback": {
+            "The model is inconsistent": "An expected value need not belong to the outcome list.",
+            "The average can be 5 although no individual result is 5": "A weighted average can lie between outcomes. No individual result or finite average is guaranteed.",
+            "Every second result must be 5": "There is no requirement that outcomes correct each other."
+          },
+          "assisted": false
+        }
+      ],
+      "practice": [
+        {
+          "id": "expected_value-p1",
+          "concept": "expected_value",
+          "difficulty": 3,
+          "text": "A craft kit has 1 sticker with probability 0.2 and 4 with probability 0.8. Expected stickers?",
+          "options": [
+            "2.5",
+            "3.4",
+            "4"
+          ],
+          "answer": "3.4",
+          "explanation": "1 × 0.2 + 4 × 0.8 = 3.4 stickers.",
+          "hint": "Give the more likely outcome more weight.",
+          "feedback": {
+            "2.5": "2.5 gives equal weight.",
+            "3.4": "1 × 0.2 + 4 × 0.8 = 3.4 stickers.",
+            "4": "4 is the most likely value, not the mean."
+          },
+          "assisted": false
+        },
+        {
+          "id": "expected_value-p2",
+          "concept": "expected_value",
+          "difficulty": 3,
+          "text": "For a fair six-sided die, E[X] = 3.5. What does that imply?",
+          "options": [
+            "A single roll can be 3.5",
+            "Every six rolls average 3.5",
+            "Many independent rolls tend to average near 3.5"
+          ],
+          "answer": "Many independent rolls tend to average near 3.5",
+          "explanation": "The long-run average tends toward 3.5; no single roll is 3.5 and no fixed block is guaranteed.",
+          "hint": "Which statement refers to a long-run average?",
+          "feedback": {
+            "A single roll can be 3.5": "There is no 3.5 face.",
+            "Every six rolls average 3.5": "Finite blocks can differ from the theoretical mean.",
+            "Many independent rolls tend to average near 3.5": "The long-run average tends toward 3.5; no single roll is 3.5 and no fixed block is guaranteed."
+          },
+          "assisted": false
+        }
+      ],
+      "narration": "Expected value is the balance point of uncertain numerical outcomes. Give more likely outcomes more weight, then add their contributions. It describes an average, not a promise about the next result.\n\nFor a finite discrete random variable X with possible values x_i and probabilities p_i, its expected value is the sum of each value multiplied by its probability. Over many independent repetitions of the same distribution, the sample average tends toward this theoretical value; a finite run need not equal it.\n\nFormula guide. X: The numerical result of one uncertain trial, such as minutes waiting. E[X]: The theoretical probability-weighted average, in the same units as X. i: An index labeling each possible outcome. x_i: The value of outcome i. p_i: The probability of outcome i; all probabilities must sum to 1. Σ: Add the weighted contributions across all outcomes.\n\n### Worked example · The shuttle wait\nA shuttle wait is 0 minutes with probability 0.5, or 10 minutes with probability 0.5. These outcomes cover every possibility in this simplified model.\n\n1. List values: 0 and 10 minutes.\n2. Check probabilities: 0.5 + 0.5 = 1.\n3. Weight each value: 0 × 0.5 = 0; 10 × 0.5 = 5.\n4. Add: E[X] = 0 + 5 = **5 minutes**.\n\nYou never wait exactly 5 minutes in this model. Over repeated trips, the average wait tends toward 5 minutes. The next trip is still either 0 or 10 minutes.\n\n### Your turn · A delivery route\nA package takes 2 days with probability 0.75 and 6 days with probability 0.25. Work through the weighted average. You can continue even if a step is incorrect.\n\nWhat is the contribution from the 2-day outcome? Pause for the learner. Multiply 2 days by 0.75 to get 1.5 weighted days. A probability alone is not a time.\n\nWhat is the expected delivery time? Pause for the learner. The other contribution is 6 × 0.25 = 1.5. Add 1.5 + 1.5 = 3 days. Averaging 2 and 6 equally would ignore their different probabilities."
+    },
+    {
+      "id": "independence",
+      "title": "Independence",
+      "summary": "Ask whether new information changes the chances.",
+      "outcomes": [
+        "Compare probabilities before and after an event.",
+        "Justify dependence using replacement and changing counts."
+      ],
+      "prerequisites": "Read a fraction as favorable cases divided by equally likely cases. P(B given A) means the chance of B among cases where A occurred; the next module develops that notation.",
+      "plain": "Two events are independent if learning that one happened does not change the chance of the other. Look at the mechanism, not just whether the events sound unrelated.",
+      "technical": "Events A and B are independent exactly when P(A ∩ B) = P(A)P(B). If P(A) > 0, this is equivalent to P(B | A) = P(B). Disjoint events with positive probabilities are not independent: one happening rules out the other.",
+      "formula": "\\begin{gathered}P(A\\cap B)=P(A)P(B)\\\\P(B\\mid A)=P(B)\\quad\\text{when }P(A)>0\\end{gathered}",
+      "symbols": {
+        "A, B": "Two events, such as blue on the first and second draws.",
+        "P(A), P(B)": "The chance of each event before extra information.",
+        "∩": "Intersection: both events happen.",
+        "|": "Given: restrict attention to the stated event.",
+        "P(B | A)": "The chance of B after learning A happened."
+      },
+      "worked": "### Worked example · The bag remembers\nA bag has 3 blue and 7 red marbles, mixed uniformly before each draw. Let A be blue on draw one and B be blue on draw two.\n\n1. Before either draw, P(B) = **3/10** by symmetry.\n2. With replacement and remixing, after a blue first draw the bag still has 3 blue among 10. P(B | A) = 3/10. The probabilities match: independent.\n3. Without replacement, a blue first draw leaves 2 blue among 9. P(B | A) = **2/9**, which differs from 3/10: dependent.\n\nFor independent fair coin flips, five heads do not make tails due. The next flip remains 1/2 for tails. Long-run balancing does not require a corrective flip.",
+      "table": [
+        {
+          "Draw rule": "Replace and remix",
+          "Before": "3/10",
+          "After first blue": "3/10",
+          "Conclusion": "Independent"
+        },
+        {
+          "Draw rule": "Do not replace",
+          "Before": "3/10",
+          "After first blue": "2/9",
+          "Conclusion": "Dependent"
+        }
+      ],
+      "guided_intro": "### Your turn · Two socks\nA drawer has 4 striped and 2 plain socks. Draw one striped sock and keep it out.",
+      "guided": [
+        {
+          "prompt": "What is the chance the second sock is striped, given the first was striped?",
+          "options": [
+            "3/5",
+            "4/6",
+            "3/6"
+          ],
+          "answer": "3/5",
+          "explanation": "One striped sock and one total sock are gone: 3 striped remain out of 5."
+        },
+        {
+          "prompt": "Which justification is correct?",
+          "options": [
+            "Dependent: 3/5 differs from the original 4/6",
+            "Independent: both objects are socks",
+            "Independent: the first draw is finished"
+          ],
+          "answer": "Dependent: 3/5 differs from the original 4/6",
+          "explanation": "Independence compares probabilities. Keeping a sock changes the drawer; the fact that time passed is not the reason."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "independence-q1",
+          "concept": "independence",
+          "difficulty": 1,
+          "text": "When are events independent?",
+          "options": [
+            "When one is impossible",
+            "When knowing one leaves the chance of the other unchanged",
+            "When they happen at different times"
+          ],
+          "answer": "When knowing one leaves the chance of the other unchanged",
+          "explanation": "Independence concerns unchanged probability after information.",
+          "hint": "Compare before and after probabilities.",
+          "feedback": {
+            "When one is impossible": "Impossible events are a special case, not the definition.",
+            "When knowing one leaves the chance of the other unchanged": "Independence concerns unchanged probability after information.",
+            "When they happen at different times": "Time order alone does not establish independence."
+          },
+          "assisted": false
+        },
+        {
+          "id": "independence-q2",
+          "concept": "independence",
+          "difficulty": 1,
+          "text": "A fair coin has independent flips. After five heads, P(tails next) is:",
+          "options": [
+            "Greater than 1/2",
+            "Less than 1/2",
+            "1/2"
+          ],
+          "answer": "1/2",
+          "explanation": "The mechanism is unchanged. Past heads do not make tails due.",
+          "hint": "Does the coin retain a memory?",
+          "feedback": {
+            "Greater than 1/2": "Long-run balancing does not require immediate correction.",
+            "Less than 1/2": "A streak does not make heads self-reinforcing under independence.",
+            "1/2": "The mechanism is unchanged. Past heads do not make tails due."
+          },
+          "assisted": false
+        },
+        {
+          "id": "independence-q3",
+          "concept": "independence",
+          "difficulty": 2,
+          "text": "Draw from 3 blue and 7 red marbles, replace and remix. Given first blue, P(second blue) is:",
+          "options": [
+            "2/9",
+            "3/10",
+            "3/9"
+          ],
+          "answer": "3/10",
+          "explanation": "Replacement restores the bag to 3 blue among 10 marbles.",
+          "hint": "Count what is in the bag after replacement.",
+          "feedback": {
+            "2/9": "2/9 applies when the blue marble is not replaced.",
+            "3/10": "Replacement restores the bag to 3 blue among 10 marbles.",
+            "3/9": "Replacement restores the total too."
+          },
+          "assisted": false
+        },
+        {
+          "id": "independence-q4",
+          "concept": "independence",
+          "difficulty": 2,
+          "text": "Same bag, without replacement. Given first blue, P(second blue) is:",
+          "options": [
+            "3/10",
+            "2/10",
+            "2/9"
+          ],
+          "answer": "2/9",
+          "explanation": "One blue and one total marble are removed, leaving 2 of 9.",
+          "hint": "Update both numerator and denominator.",
+          "feedback": {
+            "3/10": "Keeping the first marble changes the bag.",
+            "2/10": "The total also decreases by one.",
+            "2/9": "One blue and one total marble are removed, leaving 2 of 9."
+          },
+          "assisted": false
+        },
+        {
+          "id": "independence-q5",
+          "concept": "independence",
+          "difficulty": 3,
+          "text": "A and B have positive probabilities and cannot both occur. Are they independent?",
+          "options": [
+            "Yes, because they never overlap",
+            "No, because A occurring makes B impossible",
+            "Yes, because they are different events"
+          ],
+          "answer": "No, because A occurring makes B impossible",
+          "explanation": "P(B | A) = 0 differs from positive P(B). Mutually exclusive positive-probability events are dependent.",
+          "hint": "What happens to the chance of B if A occurs?",
+          "feedback": {
+            "Yes, because they never overlap": "No overlap is mutual exclusivity, not independence.",
+            "No, because A occurring makes B impossible": "P(B | A) = 0 differs from positive P(B). Mutually exclusive positive-probability events are dependent.",
+            "Yes, because they are different events": "Different names do not imply unchanged probabilities."
+          },
+          "assisted": false
+        }
+      ],
+      "practice": [
+        {
+          "id": "independence-p1",
+          "concept": "independence",
+          "difficulty": 3,
+          "text": "P(A)=0.5, P(B)=0.4 and P(A and B)=0.2. Independent?",
+          "options": [
+            "Yes: 0.5 × 0.4 = 0.2",
+            "No: 0.5 + 0.4 is not 0.2",
+            "Cannot be checked"
+          ],
+          "answer": "Yes: 0.5 × 0.4 = 0.2",
+          "explanation": "The intersection equals the product, satisfying the independence criterion.",
+          "hint": "Compare the joint probability with the product.",
+          "feedback": {
+            "Yes: 0.5 × 0.4 = 0.2": "The intersection equals the product, satisfying the independence criterion.",
+            "No: 0.5 + 0.4 is not 0.2": "Use the product, not the sum.",
+            "Cannot be checked": "The supplied probabilities suffice."
+          },
+          "assisted": false
+        },
+        {
+          "id": "independence-p2",
+          "concept": "independence",
+          "difficulty": 3,
+          "text": "Rain changes the probability of carrying an umbrella from 0.2 to 0.8. The events are:",
+          "options": [
+            "Independent because the umbrella does not cause rain",
+            "Dependent because the probability changes",
+            "Independent because both can occur"
+          ],
+          "answer": "Dependent because the probability changes",
+          "explanation": "A changed conditional probability establishes dependence; causation in both directions is unnecessary.",
+          "hint": "Independence is about information, not necessarily causation.",
+          "feedback": {
+            "Independent because the umbrella does not cause rain": "Independence does not require reverse causation.",
+            "Dependent because the probability changes": "A changed conditional probability establishes dependence; causation in both directions is unnecessary.",
+            "Independent because both can occur": "Co-occurrence alone does not prove independence."
+          },
+          "assisted": false
+        }
+      ],
+      "narration": "Two events are independent if learning that one happened does not change the chance of the other. Look at the mechanism, not just whether the events sound unrelated.\n\nEvents A and B are independent exactly when P(A ∩ B) = P(A)P(B). If P(A) > 0, this is equivalent to P(B | A) = P(B). Disjoint events with positive probabilities are not independent: one happening rules out the other.\n\nFormula guide. A, B: Two events, such as blue on the first and second draws. P(A), P(B): The chance of each event before extra information. ∩: Intersection: both events happen. |: Given: restrict attention to the stated event. P(B | A): The chance of B after learning A happened.\n\n### Worked example · The bag remembers\nA bag has 3 blue and 7 red marbles, mixed uniformly before each draw. Let A be blue on draw one and B be blue on draw two.\n\n1. Before either draw, P(B) = **3/10** by symmetry.\n2. With replacement and remixing, after a blue first draw the bag still has 3 blue among 10. P(B | A) = 3/10. The probabilities match: independent.\n3. Without replacement, a blue first draw leaves 2 blue among 9. P(B | A) = **2/9**, which differs from 3/10: dependent.\n\nFor independent fair coin flips, five heads do not make tails due. The next flip remains 1/2 for tails. Long-run balancing does not require a corrective flip.\n\n### Your turn · Two socks\nA drawer has 4 striped and 2 plain socks. Draw one striped sock and keep it out.\n\nWhat is the chance the second sock is striped, given the first was striped? Pause for the learner. One striped sock and one total sock are gone: 3 striped remain out of 5.\n\nWhich justification is correct? Pause for the learner. Independence compares probabilities. Keeping a sock changes the drawer; the fact that time passed is not the reason."
+    },
+    {
+      "id": "conditional_probability",
+      "title": "Conditional probability",
+      "summary": "Change the group you count when you learn something new.",
+      "outcomes": [
+        "Identify the conditioning group and the overlap.",
+        "Distinguish P(A given B) from P(B given A)."
+      ],
+      "prerequisites": "Divide counts to form a fraction. An event is a set of cases. The intersection A ∩ B is the set of cases satisfying both descriptions.",
+      "plain": "Conditional probability asks: among the cases that match what we now know, what fraction also match the event we care about? The new information changes the denominator.",
+      "technical": "For events A and B with P(B) > 0, P(A | B) is the probability of their intersection divided by the probability of B. In an equally likely finite population, count A-and-B cases and divide by B cases. P(A | B) generally differs from P(B | A).",
+      "formula": "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}",
+      "symbols": {
+        "A": "The target event, such as cycling to school.",
+        "B": "The known event, such as wearing a helmet.",
+        "P(A | B)": "The chance of A among B cases.",
+        "P(A ∩ B)": "The probability of cases satisfying both A and B.",
+        "P(B)": "The probability of the known group; it must be positive."
+      },
+      "worked": "### Worked example · The travel survey\nA fictional survey has 40 students: 30 cycle and 10 walk. Of the cyclists, 15 wear helmets; of the walkers, 5 wear helmets (they may have used a scooter earlier). Everyone fits exactly one row and one column.\n\n1. Let A = cycles and B = wears a helmet.\n2. Restrict to B: 15 + 5 = 20 helmet wearers.\n3. Count the overlap: 15 of these cycle.\n4. P(cycles | helmet) = 15/20 = **0.75**.\n\nReverse the condition: P(helmet | cycles) = 15/30 = **0.50**. The overlap is the same, but 30 cyclists form a different denominator from 20 helmet wearers. The order of the condition matters.",
+      "table": [
+        {
+          "Travel": "Cycle",
+          "Helmet": 15,
+          "No helmet": 15,
+          "Total": 30
+        },
+        {
+          "Travel": "Walk",
+          "Helmet": 5,
+          "No helmet": 5,
+          "Total": 10
+        },
+        {
+          "Travel": "Total",
+          "Helmet": 20,
+          "No helmet": 20,
+          "Total": 40
+        }
+      ],
+      "guided_intro": "### Your turn · Library clubs\nOf 30 students, 12 join art club, 18 join music club, and 6 join both. Membership can overlap. Find P(art | music), then reverse the condition.",
+      "guided": [
+        {
+          "prompt": "For P(art | music), what is the denominator?",
+          "options": [
+            "18 music members",
+            "12 art members",
+            "30 students"
+          ],
+          "answer": "18 music members",
+          "explanation": "Music is given, so the relevant sample space contains 18 music members, not all students."
+        },
+        {
+          "prompt": "Which pair is correct?",
+          "options": [
+            "P(art | music) = 1/3; P(music | art) = 1/2",
+            "Both equal 1/5",
+            "Both equal 1/3"
+          ],
+          "answer": "P(art | music) = 1/3; P(music | art) = 1/2",
+          "explanation": "The same overlap of 6 is divided by different groups: 6/18 = 1/3 and 6/12 = 1/2. Reversing the condition changes the denominator."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "conditional_probability-q1",
+          "concept": "conditional_probability",
+          "difficulty": 1,
+          "text": "In P(A | B), which group is the denominator?",
+          "options": [
+            "All cases regardless of B",
+            "Cases in B",
+            "Cases in A only"
+          ],
+          "answer": "Cases in B",
+          "explanation": "Conditioning on B restricts attention to B cases.",
+          "hint": "Read the symbol | as given.",
+          "feedback": {
+            "All cases regardless of B": "The original population is no longer the relevant denominator.",
+            "Cases in B": "Conditioning on B restricts attention to B cases.",
+            "Cases in A only": "A is the target, not the given group."
+          },
+          "assisted": false
+        },
+        {
+          "id": "conditional_probability-q2",
+          "concept": "conditional_probability",
+          "difficulty": 1,
+          "text": "6 of 18 music members also join art. P(art | music) equals:",
+          "options": [
+            "6/30",
+            "18/6",
+            "6/18"
+          ],
+          "answer": "6/18",
+          "explanation": "Count the overlap and divide by the music group: 6/18 = 1/3.",
+          "hint": "Among music members, how many are in art?",
+          "feedback": {
+            "6/30": "30 is the whole population, not the given group.",
+            "18/6": "A probability cannot exceed 1.",
+            "6/18": "Count the overlap and divide by the music group: 6/18 = 1/3."
+          },
+          "assisted": false
+        },
+        {
+          "id": "conditional_probability-q3",
+          "concept": "conditional_probability",
+          "difficulty": 2,
+          "text": "12 students join art, 18 music, 6 both. P(music | art) is:",
+          "options": [
+            "1/3",
+            "1/2",
+            "1/5"
+          ],
+          "answer": "1/2",
+          "explanation": "6/12 = 1/2. Art is now the conditioning group.",
+          "hint": "The order of the words matters.",
+          "feedback": {
+            "1/3": "1/3 uses the music denominator, reversing the condition.",
+            "1/2": "6/12 = 1/2. Art is now the conditioning group.",
+            "1/5": "1/5 uses all 30 students rather than art members."
+          },
+          "assisted": false
+        },
+        {
+          "id": "conditional_probability-q4",
+          "concept": "conditional_probability",
+          "difficulty": 2,
+          "text": "What if P(B) = 0 in P(A | B)?",
+          "options": [
+            "The displayed ratio is undefined",
+            "It must equal 0",
+            "It must equal 1"
+          ],
+          "answer": "The displayed ratio is undefined",
+          "explanation": "The elementary ratio definition requires a positive denominator.",
+          "hint": "Division by zero is not defined.",
+          "feedback": {
+            "The displayed ratio is undefined": "The elementary ratio definition requires a positive denominator.",
+            "It must equal 0": "Do not assign zero to a zero denominator.",
+            "It must equal 1": "A zero denominator does not imply certainty."
+          },
+          "assisted": false
+        },
+        {
+          "id": "conditional_probability-q5",
+          "concept": "conditional_probability",
+          "difficulty": 3,
+          "text": "Which statement is valid in general?",
+          "options": [
+            "P(A | B) always equals P(B | A)",
+            "Conditioning never changes a probability",
+            "Reversing a condition may change the probability"
+          ],
+          "answer": "Reversing a condition may change the probability",
+          "explanation": "The numerator may be the same overlap, but the conditioning group often has a different size.",
+          "hint": "Compare the two denominators.",
+          "feedback": {
+            "P(A | B) always equals P(B | A)": "Equal overlap is not enough for equal fractions.",
+            "Conditioning never changes a probability": "Information can change the sample space.",
+            "Reversing a condition may change the probability": "The numerator may be the same overlap, but the conditioning group often has a different size."
+          },
+          "assisted": false
+        }
+      ],
+      "practice": [
+        {
+          "id": "conditional_probability-p1",
+          "concept": "conditional_probability",
+          "difficulty": 3,
+          "text": "A group has 50 people, 20 readers, 8 readers who cycle. P(cycles | reader) is:",
+          "options": [
+            "8/50",
+            "8/20",
+            "20/50"
+          ],
+          "answer": "8/20",
+          "explanation": "Among 20 readers, 8 cycle: 8/20 = 0.4.",
+          "hint": "Which group is known?",
+          "feedback": {
+            "8/50": "50 counts people outside the given group.",
+            "8/20": "Among 20 readers, 8 cycle: 8/20 = 0.4.",
+            "20/50": "20/50 is the chance of being a reader."
+          },
+          "assisted": false
+        },
+        {
+          "id": "conditional_probability-p2",
+          "concept": "conditional_probability",
+          "difficulty": 3,
+          "text": "P(A and B)=0.12 and P(B)=0.3. P(A | B) is:",
+          "options": [
+            "0.036",
+            "2.5",
+            "0.4"
+          ],
+          "answer": "0.4",
+          "explanation": "0.12 / 0.3 = 0.4.",
+          "hint": "Divide the overlap by the given probability.",
+          "feedback": {
+            "0.036": "Multiplication does not restrict the sample space.",
+            "2.5": "The ratio is reversed and exceeds 1.",
+            "0.4": "0.12 / 0.3 = 0.4."
+          },
+          "assisted": false
+        }
+      ],
+      "narration": "Conditional probability asks: among the cases that match what we now know, what fraction also match the event we care about? The new information changes the denominator.\n\nFor events A and B with P(B) > 0, P(A | B) is the probability of their intersection divided by the probability of B. In an equally likely finite population, count A-and-B cases and divide by B cases. P(A | B) generally differs from P(B | A).\n\nFormula guide. A: The target event, such as cycling to school. B: The known event, such as wearing a helmet. P(A | B): The chance of A among B cases. P(A ∩ B): The probability of cases satisfying both A and B. P(B): The probability of the known group; it must be positive.\n\n### Worked example · The travel survey\nA fictional survey has 40 students: 30 cycle and 10 walk. Of the cyclists, 15 wear helmets; of the walkers, 5 wear helmets (they may have used a scooter earlier). Everyone fits exactly one row and one column.\n\n1. Let A = cycles and B = wears a helmet.\n2. Restrict to B: 15 + 5 = 20 helmet wearers.\n3. Count the overlap: 15 of these cycle.\n4. P(cycles | helmet) = 15/20 = **0.75**.\n\nReverse the condition: P(helmet | cycles) = 15/30 = **0.50**. The overlap is the same, but 30 cyclists form a different denominator from 20 helmet wearers. The order of the condition matters.\n\n### Your turn · Library clubs\nOf 30 students, 12 join art club, 18 join music club, and 6 join both. Membership can overlap. Find P(art | music), then reverse the condition.\n\nFor P(art | music), what is the denominator? Pause for the learner. Music is given, so the relevant sample space contains 18 music members, not all students.\n\nWhich pair is correct? Pause for the learner. The same overlap of 6 is divided by different groups: 6/18 = 1/3 and 6/12 = 1/2. Reversing the condition changes the denominator."
+    },
+    {
+      "id": "base_rates",
+      "title": "Base rates",
+      "summary": "Combine the starting population with the strength of a clue.",
+      "outcomes": [
+        "Build a natural-frequency table from prevalence and clue rates.",
+        "Explain why a strong-looking clue alone is insufficient."
+      ],
+      "prerequisites": "Use conditional probability: target-and-clue cases divided by all clue cases. A base rate is the fraction of the original population in the target group. Percent means per hundred.",
+      "plain": "A clue means more when you also know how common the thing you are looking for is. Start with a whole population and count how many clues come from each group.",
+      "technical": "The posterior probability P(T | C) combines the prior prevalence P(T) with the clue likelihoods P(C | T) and P(C | not T). Both the base rate and the strength of evidence matter; neither universally overrides the other.",
+      "formula": "P(T\\mid C)=\\frac{s\\pi}{s\\pi+f(1-\\pi)}",
+      "symbols": {
+        "T": "The target group: misprinted labels.",
+        "C": "The clue: a scanner flags the label.",
+        "¬T": "Not in the target group: correctly printed labels.",
+        "P(T)": "Prevalence before seeing the clue.",
+        "P(C | T)": "True-clue rate (sensitivity) among target cases.",
+        "P(C | ¬T)": "False-clue rate among other cases.",
+        "P(T | C)": "Target cases divided by all clue cases; requires at least one clue case.",
+        "π": "The base rate P(T). One minus π is P(not T).",
+        "s": "The true-clue rate P(C | T).",
+        "f": "The false-clue rate P(C | not T).",
+        "sπ": "Target cases with the clue, as a fraction of the population.",
+        "sπ + f(1−π)": "All clue cases as a fraction of the population; this must be positive."
+      },
+      "worked": "### Worked example · The label scanner\nIn a fictional batch of 1,000 labels, 2% have a misprint. A scanner flags 90% of misprints and 10% of correctly printed labels.\n\n1. Split the population: 20 misprinted, 980 correctly printed.\n2. Apply clue rates: 0.9 × 20 = 18 true flags; 0.1 × 980 = 98 false flags.\n3. Restrict to all flags: 18 + 98 = 116.\n4. P(misprint | flag) = 18/116 ≈ **15.52%**.\n\nThe 90% rate describes flags among misprints, not misprints among flags. Many correct labels generate more false flags in total. A lower false-flag rate or a higher prevalence would change the conclusion.",
+      "table": [
+        {
+          "Group": "Misprinted",
+          "Population": 20,
+          "Flagged": 18,
+          "Not flagged": 2
+        },
+        {
+          "Group": "Correctly printed",
+          "Population": 980,
+          "Flagged": 98,
+          "Not flagged": 882
+        },
+        {
+          "Group": "Total",
+          "Population": 1000,
+          "Flagged": 116,
+          "Not flagged": 884
+        }
+      ],
+      "guided_intro": "### Your turn · A different batch\nNow 10% of 1,000 labels are misprinted. The scanner still flags 90% of misprints and 10% of correct labels.",
+      "guided": [
+        {
+          "prompt": "How many flags come from each group?",
+          "options": [
+            "90 true flags and 90 false flags",
+            "90 true flags and 10 false flags",
+            "100 true flags and 900 false flags"
+          ],
+          "answer": "90 true flags and 90 false flags",
+          "explanation": "There are 100 misprints and 900 correct labels. Apply the rates to each group: 100 × 0.9 = 90 and 900 × 0.1 = 90."
+        },
+        {
+          "prompt": "What fraction of flags now indicate a misprint?",
+          "options": [
+            "50%",
+            "90%",
+            "10%"
+          ],
+          "answer": "50%",
+          "explanation": "There are 90 misprints among 180 flagged labels, so 90/180 = 50%. Identical scanner performance gives a different interpretation when prevalence changes."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "base_rates-q1",
+          "concept": "base_rates",
+          "difficulty": 1,
+          "text": "What is a base rate?",
+          "options": [
+            "The starting prevalence of a group",
+            "The probability of any clue",
+            "A guarantee that a clue is correct"
+          ],
+          "answer": "The starting prevalence of a group",
+          "explanation": "A base rate is the proportion of the original population in the target group before new evidence.",
+          "hint": "Think before observing the clue.",
+          "feedback": {
+            "The starting prevalence of a group": "A base rate is the proportion of the original population in the target group before new evidence.",
+            "The probability of any clue": "The clue rate is a separate likelihood.",
+            "A guarantee that a clue is correct": "Prevalence does not guarantee an individual classification."
+          },
+          "assisted": false
+        },
+        {
+          "id": "base_rates-q2",
+          "concept": "base_rates",
+          "difficulty": 1,
+          "text": "2% of 1,000 labels are misprinted. How many is that?",
+          "options": [
+            "2",
+            "20",
+            "200"
+          ],
+          "answer": "20",
+          "explanation": "0.02 × 1000 = 20 labels.",
+          "hint": "Convert percent to a fraction of one.",
+          "feedback": {
+            "2": "2% means two per hundred, not two in every population.",
+            "20": "0.02 × 1000 = 20 labels.",
+            "200": "200 would be 20%."
+          },
+          "assisted": false
+        },
+        {
+          "id": "base_rates-q3",
+          "concept": "base_rates",
+          "difficulty": 2,
+          "text": "There are 18 true flags and 98 false flags. P(misprint | flag) is:",
+          "options": [
+            "18/20",
+            "98/116",
+            "18/116"
+          ],
+          "answer": "18/116",
+          "explanation": "There are 116 total flags, of which 18 are misprints.",
+          "hint": "Restrict to all flagged labels.",
+          "feedback": {
+            "18/20": "18/20 is flags among misprints, reversing the condition.",
+            "98/116": "98 counts correctly printed labels with false flags.",
+            "18/116": "There are 116 total flags, of which 18 are misprints."
+          },
+          "assisted": false
+        },
+        {
+          "id": "base_rates-q4",
+          "concept": "base_rates",
+          "difficulty": 2,
+          "text": "Why can a scanner with a 90% true-flag rate have many false flags?",
+          "options": [
+            "A large correct-label group can contribute many flags",
+            "90% means 90% of flags are true",
+            "Prevalence has no effect"
+          ],
+          "answer": "A large correct-label group can contribute many flags",
+          "explanation": "Even a smaller false-flag rate applied to a much larger group can produce many false flags.",
+          "hint": "Compare group sizes as well as rates.",
+          "feedback": {
+            "A large correct-label group can contribute many flags": "Even a smaller false-flag rate applied to a much larger group can produce many false flags.",
+            "90% means 90% of flags are true": "True-flag rate conditions on misprints, not flags.",
+            "Prevalence has no effect": "The group sizes determine how many clues come from each group."
+          },
+          "assisted": false
+        },
+        {
+          "id": "base_rates-q5",
+          "concept": "base_rates",
+          "difficulty": 3,
+          "text": "What determines interpretation of a clue?",
+          "options": [
+            "Only prevalence",
+            "Only how convincing the clue sounds",
+            "Both prevalence and clue rates in each group"
+          ],
+          "answer": "Both prevalence and clue rates in each group",
+          "explanation": "Bayesian updating combines prior prevalence and likelihoods in target and non-target groups.",
+          "hint": "Which quantities produce the natural-frequency counts?",
+          "feedback": {
+            "Only prevalence": "Strong evidence matters too.",
+            "Only how convincing the clue sounds": "A vivid clue alone omits population information.",
+            "Both prevalence and clue rates in each group": "Bayesian updating combines prior prevalence and likelihoods in target and non-target groups."
+          },
+          "assisted": false
+        }
+      ],
+      "practice": [
+        {
+          "id": "base_rates-p1",
+          "concept": "base_rates",
+          "difficulty": 3,
+          "text": "100 of 1,000 labels are misprinted. Rates are 90% true flags and 10% false flags. P(misprint | flag)?",
+          "options": [
+            "90%",
+            "50%",
+            "10%"
+          ],
+          "answer": "50%",
+          "explanation": "90 true flags and 90 false flags give 90/180 = 50%.",
+          "hint": "Count flags in both groups.",
+          "feedback": {
+            "90%": "90% reverses the condition.",
+            "50%": "90 true flags and 90 false flags give 90/180 = 50%.",
+            "10%": "10% is the prior prevalence."
+          },
+          "assisted": false
+        },
+        {
+          "id": "base_rates-p2",
+          "concept": "base_rates",
+          "difficulty": 3,
+          "text": "Prevalence and true-flag rate stay fixed. Lowering the false-flag rate generally does what, when true flags exist?",
+          "options": [
+            "Reduces the fraction of flags that are true",
+            "Leaves the fraction unchanged",
+            "Increases the fraction of flags that are true"
+          ],
+          "answer": "Increases the fraction of flags that are true",
+          "explanation": "With the same true flags and fewer false flags, true flags form a larger fraction of all flags.",
+          "hint": "Keep the numerator fixed and reduce the false part of the denominator.",
+          "feedback": {
+            "Reduces the fraction of flags that are true": "Removing false flags improves this fraction.",
+            "Leaves the fraction unchanged": "The denominator changes.",
+            "Increases the fraction of flags that are true": "With the same true flags and fewer false flags, true flags form a larger fraction of all flags."
+          },
+          "assisted": false
+        }
+      ],
+      "narration": "A clue means more when you also know how common the thing you are looking for is. Start with a whole population and count how many clues come from each group.\n\nThe posterior probability P(T | C) combines the prior prevalence P(T) with the clue likelihoods P(C | T) and P(C | not T). Both the base rate and the strength of evidence matter; neither universally overrides the other.\n\nFormula guide. T: The target group: misprinted labels. C: The clue: a scanner flags the label. ¬T: Not in the target group: correctly printed labels. P(T): Prevalence before seeing the clue. P(C | T): True-clue rate (sensitivity) among target cases. P(C | ¬T): False-clue rate among other cases. P(T | C): Target cases divided by all clue cases; requires at least one clue case. π: The base rate P(T). One minus π is P(not T). s: The true-clue rate P(C | T). f: The false-clue rate P(C | not T). sπ: Target cases with the clue, as a fraction of the population. sπ + f(1−π): All clue cases as a fraction of the population; this must be positive.\n\n### Worked example · The label scanner\nIn a fictional batch of 1,000 labels, 2% have a misprint. A scanner flags 90% of misprints and 10% of correctly printed labels.\n\n1. Split the population: 20 misprinted, 980 correctly printed.\n2. Apply clue rates: 0.9 × 20 = 18 true flags; 0.1 × 980 = 98 false flags.\n3. Restrict to all flags: 18 + 98 = 116.\n4. P(misprint | flag) = 18/116 ≈ **15.52%**.\n\nThe 90% rate describes flags among misprints, not misprints among flags. Many correct labels generate more false flags in total. A lower false-flag rate or a higher prevalence would change the conclusion.\n\n### Your turn · A different batch\nNow 10% of 1,000 labels are misprinted. The scanner still flags 90% of misprints and 10% of correct labels.\n\nHow many flags come from each group? Pause for the learner. There are 100 misprints and 900 correct labels. Apply the rates to each group: 100 × 0.9 = 90 and 900 × 0.1 = 90.\n\nWhat fraction of flags now indicate a misprint? Pause for the learner. There are 90 misprints among 180 flagged labels, so 90/180 = 50%. Identical scanner performance gives a different interpretation when prevalence changes."
+    }
+  ]
+}

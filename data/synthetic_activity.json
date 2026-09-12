@@ -1,0 +1,18 @@
+{
+  "synthetic": true,
+  "description": "Optional authored demonstration records; never mixed with real learner sessions.",
+  "events": [
+    {
+      "kind": "section_visited",
+      "module": "expected_value",
+      "detail": {
+        "section": "Definition"
+      }
+    },
+    {
+      "kind": "interactive_calculation",
+      "module": "expected_value",
+      "detail": {}
+    }
+  ]
+}
